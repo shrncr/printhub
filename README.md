@@ -10,5 +10,14 @@
 - Query/Search results
 - Product page/specs (for ready to buy or specs)
 - View Cart page
-- Checkout
+- Checkout - leave out payment logic
 
+# TO-DO
+## Backend:
+- Login registration / Sign Up
+- Database connection 
+- Cookies
+- Hosting
+
+## Frontend:
+- Components for all wireframes
