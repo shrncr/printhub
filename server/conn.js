@@ -12,6 +12,7 @@ const connectDB = async () => { //connects db
     mongoose.set('strictQuery', true);
     await mongoose.connect(db, {
       useNewUrlParser: true,
+      dbName: 'printhubDB'
     });
 
     console.log('MongoDB is Connected...');
