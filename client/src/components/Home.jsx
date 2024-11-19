@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import NavBar from './NavBar';
 
 const DataDisplay = () => {
   const [users, setUsers] = useState([]);
