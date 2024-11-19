@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import NavBar from './NavBar';
+import { useUser } from './UserContext';
 
 const DataDisplay = () => {
   const [users, setUsers] = useState([]);
@@ -10,7 +11,7 @@ const DataDisplay = () => {
   const [purchases, setPurchases] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const { user, logout } = useUser();
   // Fetch data from all collections
   const fetchData = async () => {
     try {
@@ -46,7 +47,7 @@ const DataDisplay = () => {
 
   return (
     <div style={{ padding: '20px' }}>
-      <h2>Users</h2>
+      <h2>{user ? user.emailAddress : "not logged in yet"}</h2>
       <ul>
         {users.map((user) => (
           <li key={user._id}>

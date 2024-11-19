@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { useUser } from "./UserContext";
 
 const Signup = () => {
+  const { user } = useUser();
+
   const [name, setName] = useState('');
   const [emailAddress, setEmailAddress] = useState('');
   const [password, setPassword] = useState('');
-  const [userType, setUserType] = useState('buyer'); // Default to 'buyer'
+  const [userType, setUserType] = useState('buyer'); 
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
@@ -25,7 +28,6 @@ const Signup = () => {
 
       const userId = userResponse.data._id;
 
-      // Handle additional requests based on user type
       if (userType === 'buyer' || userType === 'both') {
         await axios.post('http://localhost:8082/buyers', {
           userId,
@@ -45,7 +47,7 @@ const Signup = () => {
   };
 
   return (
-    <div>
+     <div>
       <form onSubmit={handleSignup}>
         <h2>Sign Up</h2>
         {error && <p style={{ color: 'red' }}>{error}</p>}

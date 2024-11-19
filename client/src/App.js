@@ -6,10 +6,12 @@ import Home from './components/Home';
 import NavBar from './components/NavBar';
 import Cart from './components/Cart';
 import Listings from './components/Listings';
+import { UserProvider } from './components/UserContext';
+
 function App() {
   return (
     <>
-    
+    <UserProvider>
     <Router>
     <NavBar/>
       <Routes>
@@ -20,6 +22,7 @@ function App() {
         <Route path = "/listings" element = {<Listings />}/>
       </Routes>
     </Router>
+    </UserProvider>
     </>
   );
 }
