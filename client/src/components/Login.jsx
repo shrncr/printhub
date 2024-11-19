@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import { useUser } from "./UserContext";
 
 const Login = () => {
+  const { user,logout, login, } = useUser();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [user, setUser] = useState(null);
+  const [userInfo, setUserInfo] = useState(null);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -27,7 +30,8 @@ const Login = () => {
 
       // Set user data in local state
       console.log(userData)
-      setUser(userData);
+      setUserInfo(userData);
+      login(userData)
 
       alert('Login successful!');
     } catch (err) {
@@ -37,8 +41,8 @@ const Login = () => {
 
   const handleLogout = () => {
     // Remove the session cookie
-    Cookies.remove('sessionId');
-    setUser(null);
+    logout()
+    setUserInfo(null);
     alert('Logged out successfully!');
   };
   useEffect(()=>{
