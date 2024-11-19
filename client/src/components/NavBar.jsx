@@ -9,10 +9,16 @@ return(
             <Link to="/">Home</Link>
         </li>
         <li>
-            <Link to="/login">LogIn</Link>
+            <Link to="/login">Log In</Link>
         </li>
         <li>
             <Link to="/signup">Sign Up</Link>
+        </li>
+        <li>
+            <Link to ="/cart">Cart</Link>
+        </li>
+        <li>
+            <Link to ="/listings">Listings</Link>
         </li>
     </ul>
     </>

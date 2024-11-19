@@ -3,7 +3,7 @@ const router = express.Router();
 const Listing = require('../models/Listing');
 
 //gets all listings
-router.get('/', async (req, res) => {
+router.get('/listings', async (req, res) => {
   try {
     const listings = await Listing.find();
     res.json(listings);
@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
 });
 
 //new listing
-router.post('/', async (req, res) => {
+router.post('/listings', async (req, res) => {
   try {
     const listing = new Listing(req.body);
     await listing.save();
@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
 });
 
 //update listing
-router.put('/:id', async (req, res) => {
+router.put('/listings:id', async (req, res) => {
   try {
     const listing = await Listing.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!listing) return res.status(404).json({ message: 'Listing not found' });
@@ -35,7 +35,7 @@ router.put('/:id', async (req, res) => {
 });
 
 //delete listing
-router.delete('/:id', async (req, res) => {
+router.delete('/listings:id', async (req, res) => {
   try {
     const listing = await Listing.findByIdAndDelete(req.params.id);
     if (!listing) return res.status(404).json({ message: 'Listing not found' });
