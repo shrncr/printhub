@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; // For navigation to individual listing page
+import { Link } from 'react-router-dom'; 
 
 const ListingsPage = () => {
   const [listings, setListings] = useState([]);
@@ -21,14 +21,12 @@ const ListingsPage = () => {
     }
   };
 
-  // UseEffect to fetch data when the component mounts
+  // fetches listings when component starts
   useEffect(() => {
     fetchListings();
   }, []);
 
   const handleAddToCart = async (listingId) => {
-    // Add to cart logic goes here, for example:
-    // - Assume `userId` and `quantity` are predefined
     try {
       await axios.post('http://localhost:8082/cart', {
         userId: 'userId_here',  // Replace with actual user ID
@@ -45,13 +43,13 @@ const ListingsPage = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div>
       <h2>All Listings</h2>
-      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+      <div >
         {listings.map((listing) => (
-          <div key={listing._id} style={{ margin: '10px', border: '1px solid #ddd', padding: '10px', width: '250px' }}>
+          <div key={listing._id} >
             <h3>{listing.listingName}</h3>
-            <img src={listing.image} alt={listing.listingName} style={{ width: '100%', height: 'auto' }} />
+            <img src={listing.image} alt={listing.listingName} />
             <p><strong>Price:</strong> ${listing.price}</p>
             <p><strong>Stock:</strong> {listing.stock}</p>
             <p><strong>Rating:</strong> {listing.listingRating}</p>
