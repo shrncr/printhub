@@ -1,105 +1,39 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import NavBar from './NavBar';
-import { useUser } from './UserContext';
+import React from "react";
+import "../styles/HomePage.css";
 
-const DataDisplay = () => {
-  const [users, setUsers] = useState([]);
-  const [sellers, setSellers] = useState([]);
-  const [buyers, setBuyers] = useState([]);
-  const [listings, setListings] = useState([]);
-  const [purchases, setPurchases] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const { user, logout } = useUser();
-  // Fetch data from all collections
-  const fetchData = async () => {
-    try {
-      setLoading(true);
-      const [usersRes, sellersRes, buyersRes, listingsRes, purchasesRes] = await Promise.all([
-        axios.get('http://localhost:8082/users'),
-        axios.get('http://localhost:8082/sellers'),
-        axios.get('http://localhost:8082/buyers'),
-        axios.get('http://localhost:8082/listings'),
-        axios.get('http://localhost:8082/purchases')
-      ]);
 
-      setUsers(usersRes.data);
-      setSellers(sellersRes.data);
-      setBuyers(buyersRes.data);
-      setListings(listingsRes.data);
-      setPurchases(purchasesRes.data);
-    } catch (err) {
-      setError('Failed to fetch data');
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // UseEffect to fetch data on component mount
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  if (loading) return <p>Loading data...</p>;
-  if (error) return <p>{error}</p>;
-
+const HomePage = () => {
   return (
-    <div style={{ padding: '20px' }}>
-      <h2>{user ? user.emailAddress : "not logged in yet"}</h2>
-      <ul>
-        {users.map((user) => (
-          <li key={user._id}>
-            <strong>Name:</strong> {user.name}, <strong>Email:</strong> {user.email}, <strong>Phone:</strong> {user.phoneNumber}
-          </li>
-        ))}
-      </ul>
+    <div className="homepage">
+      
 
-      <h2>Sellers</h2>
-      <ul>
-        {sellers.map((seller) => (
-          <li key={seller._id}>
-            <strong>User ID:</strong> {seller.userId}, <strong>Rating:</strong> {seller.sellerRating}
-          </li>
-        ))}
-      </ul>
+      <section className="hero">
+        <div className="hero-text">
+          <h2>Your Official Place for 3D Printing</h2>
+          <a href="/project" className="view-project">
+            View Project →
+          </a>
+        </div>
+        <div className="hero-image">
+          <img
+            src="https://via.placeholder.com/600x400" // Replace with your image URL
+            alt="Hero"
+          />
+        </div>
+      </section>
 
-      <h2>Buyers</h2>
-      <ul>
-        {buyers.map((buyer) => (
-          <li key={buyer._id}>
-            <strong>User ID:</strong> {buyer.userId}, <strong>Credit Card:</strong> {buyer.creditCard}, <strong>Address:</strong> {buyer.address}
-          </li>
-        ))}
-      </ul>
-
-      <h2>Listings</h2>
-      <ul>
-        {listings.map((listing) => (
-          <li key={listing._id}>
-            <strong>Name:</strong> {listing.listingName}, <strong>Price:</strong> ${listing.price}, <strong>Stock:</strong> {listing.stock}, <strong>Rating:</strong> {listing.listingRating}
-            <br />
-            <img src={listing.image} alt={listing.listingName} style={{ width: '100px', height: '100px' }} />
-            <p>{listing.listingDesc}</p>
-          </li>
-        ))}
-      </ul>
-
-      <h2>Purchases</h2>
-      <ul>
-        {purchases.map((purchase) => (
-          <li key={purchase._id}>
-            <strong>User ID:</strong> {purchase.userId}, <strong>Purchase ID:</strong> {purchase.purchaseId}
-            <br />
-            <strong>Listing IDs:</strong> {purchase.listingIds.join(', ')}
-            <br />
-            <strong>Card Digits:</strong> **** **** **** {purchase.cardDigits}
-          </li>
-        ))}
-      </ul>
+      <section className="recommended">
+        <h2>Recommended</h2>
+        <div className="recommended-images">
+          <img src="https://via.placeholder.com/150" alt="1" />
+          <img src="https://via.placeholder.com/150" alt="2" />
+          <img src="https://via.placeholder.com/150" alt="3" />
+          <img src="https://via.placeholder.com/150" alt="4" />
+          <img src="https://via.placeholder.com/150" alt="5" />
+        </div>
+      </section>
     </div>
   );
 };
 
-export default DataDisplay;
+export default HomePage;
