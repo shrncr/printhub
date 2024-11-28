@@ -65,7 +65,7 @@ const Signup = () => {
         <div>
           <input
             type="emailAddress"
-            placeholder="EmailAddress"
+            placeholder="Email Address"
             value={emailAddress}
             onChange={(e) => setEmailAddress(e.target.value)}
             required
@@ -80,7 +80,7 @@ const Signup = () => {
             required
           />
         </div>
-        <div>
+        <div class="radio">
           <label>
             <input
               type="radio"
