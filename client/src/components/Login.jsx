@@ -14,12 +14,13 @@ const Login = () => {
   const [signupEmail, setSignupEmail] = useState('');
   const [signupPassword, setSignupPassword] = useState('');
   const [userType, setUserType] = useState('buyer');
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+  const [loginError, setLoginError] = useState('');
+  const [signupError, setSignupError] = useState('');
+  const [signupSuccess, setSignupSuccess] = useState('');
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError('');
+    setLoginError('');
 
     try {
       // Send login request to your backend
@@ -41,14 +42,14 @@ const Login = () => {
 
       alert('Login successful!');
     } catch (err) {
-      setError('Login failed. Please check your email and password.');
+      setLoginError('Login failed. Please check your email and password.');
     }
   };
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    setError('');
-    setSuccess('');
+    setSignupError('');
+    setSignupSuccess('');
 
     try {
       // Create a new user
@@ -72,9 +73,9 @@ const Login = () => {
         });
       }
 
-      setSuccess('Signup successful! You can now log in.');
+      setSignupSuccess('Signup successful! You can now log in.');
     } catch (err) {
-      setError('Signup failed. Please try again.');
+      setSignupError('Signup failed. Please try again.');
     }
   };
 
@@ -96,7 +97,7 @@ console.log(user)
           <>
           <form onSubmit={handleLogin}>
             <h2>Login</h2>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
+            {loginError && <p style={{ color: 'red' }}>{loginError}</p>}
             <div>
               <input
                 class="long"
@@ -134,8 +135,8 @@ console.log(user)
       <div>
       <form onSubmit={handleSignup}>
         <h2>Sign Up</h2>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        {success && <p style={{ color: 'green' }}>{success}</p>}
+        {signupError && <p style={{ color: 'red' }}>{signupError}</p>}
+        {signupSuccess && <p style={{ color: 'green' }}>{signupSuccess}</p>}
 
         <div>
           <input
