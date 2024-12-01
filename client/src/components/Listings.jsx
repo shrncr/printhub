@@ -43,27 +43,13 @@ const ListingsPage = () => {
 
   return (
     <div>
-      {/* Navigation Bar */}
-      <nav style={{ padding: '1rem', background: '#f8f9fa', borderBottom: '1px solid #ddd' }}>
-        <h1 style={{ margin: 0 }}>PRINTHUB</h1>
-        <div style={{ float: 'right' }}>
-          <Link to="/" style={{ marginRight: '1rem' }}>
-            Home
-          </Link>
-          <Link to="/cart" style={{ marginRight: '1rem' }}>
-            Cart
-          </Link>
-          <Link to="/listings">Listings</Link>
-        </div>
-      </nav>
-
       {/* Listings Section */}
       <div style={{ padding: '2rem' }}>
         <h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>Available Products</h2>
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+            gridTemplateColumns: 'repeat(3, 1fr)', // Fixed 3 listings per row
             gap: '1.5rem',
           }}
         >
