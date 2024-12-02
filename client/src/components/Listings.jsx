@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const ListingsPage = () => {
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const searchQuery = params.get("search") || "";
 
   // Fetch listings from the backend
   const fetchListings = async () => {
@@ -25,18 +29,24 @@ const ListingsPage = () => {
     fetchListings();
   }, []);
 
-  const handleAddToCart = async (listingId) => {
+  const handleAddToCart = async (listingId, listingName,price) => {
     try {
       await axios.post('http://localhost:8082/cart', {
         userId: 'userId_here', // Replace with actual user ID if available
         listingId,
-        quantity: 1,
+        listingName,
+        price,
+        quantity:1,
       });
       alert('Item added to cart!');
     } catch (err) {
       console.error('Error adding item to cart:', err);
     }
   };
+
+  const filteredListings = listings.filter((listing) =>
+    listing.listingName.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   if (loading) return <p>Loading listings...</p>;
   if (error) return <p>{error}</p>;
@@ -53,7 +63,7 @@ const ListingsPage = () => {
             gap: '1.5rem',
           }}
         >
-          {listings.map((listing) => (
+          {filteredListings.map((listing) => (
             <div
               key={listing._id}
               style={{
@@ -79,7 +89,7 @@ const ListingsPage = () => {
                 )}
                 <p style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>${listing.price}</p>
                 <button
-                  onClick={() => handleAddToCart(listing._id)}
+                  onClick={() => handleAddToCart(listing._id, listing.listingName, listing.price)}
                   style={{
                     width: '100%',
                     padding: '0.5rem',

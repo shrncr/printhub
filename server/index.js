@@ -4,6 +4,7 @@ Root file for backend. Brings together API endpoints, defines port number, and c
 const express = require("express");
 const cors = require("cors");
 const connectDB = require("./conn");
+const Cart = require("./models/cart");
 const app = express();
 require('core-js');
 
@@ -22,6 +23,9 @@ app.use('/buyers', require('./routes/buyer'));
 app.use('/sellers', require('./routes/seller'));
 app.use('/listings', require('./routes/listing'));
 app.use('/purchases', require('./routes/purchase'));
+app.use('/cart', require('./routes/cart'));
+
+
 
 const port = process.env.PORT || 8082;
 
