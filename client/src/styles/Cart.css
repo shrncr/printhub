@@ -1,0 +1,45 @@
+.cart{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    box-sizing: border-box;
+    
+    
+}
+
+.cartList{
+    display:flex;
+    flex-direction: column;
+}
+.cartList li{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items:center;
+    margin:20px;
+    padding: 20px;
+    width: 80%;
+    
+    
+}
+
+.removeButt{
+    width: 43px;
+    height:43px;
+    border-radius: 30px;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow here */
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+.checkout{
+    justify-self: right;
+    width: 30%;
+    max-width: 300px;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow here */
+    align-self: flex-end;
+}
