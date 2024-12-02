@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
 
 const HomePage = () => {
@@ -25,14 +26,27 @@ const HomePage = () => {
     fetchListings();
   }, []);
 
-  const handleAddToCart = async (listingId) => {
+  const handleAddToCart = async (listingId, listingName,price) => {
     try {
-      await axios.post('http://localhost:8082/cart', {
-        userId: 'userId_here', // Replace with actual user ID if available
-        listingId,
-        quantity: 1,
-      });
-      alert('Item added to cart!');
+      const cart = Cookies.get('cart') ? JSON.parse(Cookies.get('cart')) : [];
+      const itemIndex = cart.findIndex(item=> item.listingId===listingId);
+
+      //if it finds the same item already in the cart, update quantities
+      if(itemIndex !== -1){
+        cart[itemIndex].quantity +=1; 
+      }
+      else{
+        cart.push({
+          listingId,
+          listingName,
+          price,
+          quantity:1,
+          image: listings.find(listing=> listing._id === listingId).image,
+          listingDesc: listings.find(listing => listing._id ===listingId).listingDesc,
+        })
+      }
+      Cookies.set('cart', JSON.stringify(cart));
+      alert('Item added to Cart!');
     } catch (err) {
       console.error('Error adding item to cart:', err);
     }
