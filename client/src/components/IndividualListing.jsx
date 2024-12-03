@@ -11,7 +11,7 @@ const IndividualListing = () => {
   useEffect(() => {
     const fetchListing = async () => {
       try {
-        const res = await axios.get(`http://localhost:8082/listings/${id}`);
+        const res = await axios.get(`https://printhubback.vercel.app/listings/${id}`);
         setListing(res.data);
       } catch (err) {
         setError('Failed to fetch listing');

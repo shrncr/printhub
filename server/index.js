@@ -9,7 +9,7 @@ const app = express();
 require('core-js');
 
 app.use(cors({
-  origin: 'http://localhost:3000',//allow requests from frontend
+  origin: ['http://localhost:3000', 'https://printhub-eight.vercel.app/'] ,//allow requests from frontend
   methods: ['GET', 'POST', 'PUT', 'DELETE'], 
   allowedHeaders: ['Content-Type', 'Authorization', 'User-Agent', 'Accept', 'Referer'], 
   credentials: true, //cookies

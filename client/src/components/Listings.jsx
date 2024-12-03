@@ -16,7 +16,7 @@ const ListingsPage = () => {
   const fetchListings = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:8082/listings'); // Replace with your API URL
+      const response = await axios.get('https://printhubback.vercel.app/listings'); // Replace with your API URL
       setListings(response.data);
     } catch (err) {
       setError('Failed to fetch listings');

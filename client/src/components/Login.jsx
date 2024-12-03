@@ -24,7 +24,7 @@ const Login = () => {
 
     try {
       // Send login request to your backend
-      const response = await axios.post('http://localhost:8082/users/login', {
+      const response = await axios.post('https://printhubback.vercel.app/users/login', {
         email:loginEmail,
         password:loginPassword,
       });
@@ -53,7 +53,7 @@ const Login = () => {
 
     try {
       // Create a new user
-      const userResponse = await axios.post('http://localhost:8082/users', {
+      const userResponse = await axios.post('https://printhubback.vercel.app/users', {
         name:signupName,
         emailAddress:signupEmail,
         password:signupPassword,
@@ -62,13 +62,13 @@ const Login = () => {
       const userId = userResponse.data._id;
 
       if (userType === 'buyer' || userType === 'both') {
-        await axios.post('http://localhost:8082/buyers', {
+        await axios.post('https://printhubback.vercel.app/buyers', {
           userId,
         });
       }
 
       if (userType === 'seller' || userType === 'both') {
-        await axios.post('http://localhost:8082/sellers', {
+        await axios.post('https://printhubback.vercel.app/sellers', {
           userId,
         });
       }

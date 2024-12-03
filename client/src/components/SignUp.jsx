@@ -20,7 +20,7 @@ const Signup = () => {
 
     try {
       // Create a new user
-      const userResponse = await axios.post('http://localhost:8082/users', {
+      const userResponse = await axios.post('https://printhubback.vercel.app/users', {
         name,
         emailAddress,
         password,
@@ -29,13 +29,13 @@ const Signup = () => {
       const userId = userResponse.data._id;
 
       if (userType === 'buyer' || userType === 'both') {
-        await axios.post('http://localhost:8082/buyers', {
+        await axios.post('https://printhubback.vercel.app/buyers', {
           userId,
         });
       }
 
       if (userType === 'seller' || userType === 'both') {
-        await axios.post('http://localhost:8082/sellers', {
+        await axios.post('https://printhubback.vercel.app/sellers', {
           userId,
         });
       }
