@@ -8,6 +8,7 @@ import Cart from './components/Cart';
 import Listings from './components/Listings';
 import { UserProvider } from './components/UserContext';
 import IndividualListing from './components/IndividualListing';
+import Checkout from './components/Checkout';
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
         <Route path = "/cart" element = {<Cart />}/>
         <Route path = "/listings" element = {<Listings />}/>
         <Route path = "/listings/:id" element = {<IndividualListing />}/>
+        <Route path="/checkout" element={<Checkout />} />
+        
       </Routes>
     </Router>
     </UserProvider>
