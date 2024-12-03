@@ -22,6 +22,7 @@ function App() {
         <Route path = "/cart" element = {<Cart />}/>
         <Route path = "/listings" element = {<Listings />}/>
         <Route path = "/listings/:id" element = {<IndividualListing />}/>
+        <Route path = "/profile" element = {<Profile />}/>
       </Routes>
     </Router>
     </UserProvider>
