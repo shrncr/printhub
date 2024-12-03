@@ -13,11 +13,10 @@
 - Checkout - leave out payment logic
 
 # TO-DO
-## Backend:
-- Login registration / Sign Up
-- Database connection 
-- Cookies
-- Hosting
 
-## Frontend:
-- Components for all wireframes
+## Current:
+- Profile Page - address, phone, email; purchases; if seller - can see all your products and add new product
+- Security
+- Fix signup
+- Fix images
+- Add custom file/product request form
