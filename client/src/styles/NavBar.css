@@ -3,12 +3,12 @@
 /* General Styling for the Navbar */
 .navbar {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 30px;
+    padding: 0px 20px;
     background-color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
     height: 10vh;
     flex-wrap: nowrap;
   }
@@ -19,6 +19,7 @@
     font-weight: bold;
     color: #000; /* Black text for the logo */
     margin: 0;
+    white-space: nowrap;
   }
   
   /* Navigation Links */
@@ -64,6 +65,8 @@
   }
   
   .searchBar{
-    width:50%;
+    display: flex;
+    max-width: 500px;
+    flex: 1;
   }
   
