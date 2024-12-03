@@ -31,9 +31,6 @@ export default function NavBar() {
             <Link to="/login">Log In</Link>
           </li>
           <li>
-            <Link to="/profile"> My Account </Link>
-          </li>
-          <li>
             <Link to="/cart">Cart</Link>
           </li>
 
