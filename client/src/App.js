@@ -9,6 +9,7 @@ import Listings from './components/Listings';
 import { UserProvider } from './components/UserContext';
 import IndividualListing from './components/IndividualListing';
 import Checkout from './components/Checkout';
+import Profile from './components/Profile';
 
 function App() {
   return (
