@@ -55,7 +55,7 @@ const Login = () => {
       // Create a new user
       const userResponse = await axios.post('https://printhubback.vercel.app/users', {
         name:signupName,
-        emailAddress:signupEmail,
+        email:signupEmail,
         password:signupPassword,
       });
 
@@ -74,7 +74,9 @@ const Login = () => {
       }
 
       setSignupSuccess('Signup successful! You can now log in.');
-    } catch (err) {
+    } 
+    catch (err) {
+      console.error('Signup error:', err.response ? err.response.data : err.message);
       setSignupError('Signup failed. Please try again.');
     }
   };
