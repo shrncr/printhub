@@ -55,8 +55,9 @@ const Login = () => {
       // Create a new user
       const userResponse = await axios.post('https://printhubback.vercel.app/users', {
         name:signupName,
-        email:signupEmail,
+        emailAddress:signupEmail,
         password:signupPassword,
+        userType: userType
       });
 
       const userId = userResponse.data._id;

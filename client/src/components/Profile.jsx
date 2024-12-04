@@ -72,6 +72,9 @@ const Profile = () => {
       const response = await axios.put(`https://printhubback.vercel.app/users/${user._id}`, profileData);
       login(response.data); // Update user context
       setSuccess('Profile updated successfully.');
+      setTimeout(() => {
+        setSuccess('');
+      }, 3000); // 3000ms = 3 seconds
     } catch (err) {
       setError('Failed to update profile. Please try again.');
       console.error('Profile update error:', err);
@@ -118,7 +121,6 @@ const Profile = () => {
           <input
             type="email"
             name="email"
-            placeholder={profileData.email}
             value={profileData.email}
             onChange={handleInputChange}
             required
