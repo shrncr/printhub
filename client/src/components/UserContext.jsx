@@ -7,7 +7,8 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   const login = (userData) => {//logs u in
-    setUser(userData);
+    console.log(userData);
+    setUser(userData);//all of your data
   };
 
   const logout = () => {//logs u out

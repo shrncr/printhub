@@ -19,8 +19,6 @@ connectDB();
 
 //oh crud ops
 app.use('/users', require('./routes/user'));
-app.use('/buyers', require('./routes/buyer'));
-app.use('/sellers', require('./routes/seller'));
 app.use('/listings', require('./routes/listing'));
 app.use('/purchases', require('./routes/purchase'));
 

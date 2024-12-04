@@ -19,26 +19,15 @@ const Signup = () => {
     setSuccess('');
 
     try {
-      // Create a new user
+      let isSeller= (userType == "both"|| userType == "seller");
+      let isBuyer = (userType =="both" || userType =="buyer")   // Create a new user
       const userResponse = await axios.post('https://printhubback.vercel.app/users', {
         name,
         emailAddress,
         password,
+        isSeller,
+        isBuyer
       });
-
-      const userId = userResponse.data._id;
-
-      if (userType === 'buyer' || userType === 'both') {
-        await axios.post('https://printhubback.vercel.app/buyers', {
-          userId,
-        });
-      }
-
-      if (userType === 'seller' || userType === 'both') {
-        await axios.post('https://printhubback.vercel.app/sellers', {
-          userId,
-        });
-      }
 
       setSuccess('Signup successful! You can now log in.');
     } catch (err) {
