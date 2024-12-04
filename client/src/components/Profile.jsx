@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { useUser } from "./UserContext";
 import "../styles/Profile.css";
 
@@ -17,8 +18,12 @@ const Profile = () => {
   const [editMode, setEditMode] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
+    if (!user){
+      navigate('/login');
+    }
     if (user) {
       setProfileData({
         name: user.name,
@@ -89,6 +94,7 @@ const Profile = () => {
     }
   };
 
+
   return (
     <div className="profile-page">
       <h2>Profile</h2>
@@ -111,6 +117,7 @@ const Profile = () => {
           <input
             type="email"
             name="email"
+            
             value={profileData.email}
             onChange={handleInputChange}
             required
