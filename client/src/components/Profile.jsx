@@ -15,7 +15,6 @@ const Profile = () => {
   const [purchases, setPurchases] = useState([]);
   const [products, setProducts] = useState([]);
   const [newProduct, setNewProduct] = useState('');
-  const [editMode, setEditMode] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const navigate = useNavigate();
@@ -24,7 +23,7 @@ const Profile = () => {
     if (!user){
       navigate('/login');
     }
-    if (user) {
+    else {
       setProfileData({
         name: user.name,
         email: user.email,
@@ -36,7 +35,7 @@ const Profile = () => {
         fetchProducts();
       }
     }
-  }, [user]);
+  }, [user, navigate]);
 
   const fetchPurchases = async () => {
     try {
@@ -94,14 +93,16 @@ const Profile = () => {
     }
   };
 
-
+  if (!user) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="profile-page">
-      <h2>Profile</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {success && <p style={{ color: 'green' }}>{success}</p>}
 
-      <form onSubmit={handleProfileUpdate}>
+      <form onSubmit={handleProfileUpdate} className="profileForm">
+      <h2>Profile</h2>
         <div>
           <label>Name:</label>
           <input
@@ -117,7 +118,7 @@ const Profile = () => {
           <input
             type="email"
             name="email"
-            
+            placeholder={profileData.email}
             value={profileData.email}
             onChange={handleInputChange}
             required
@@ -144,10 +145,21 @@ const Profile = () => {
         <button type="submit">Update Profile</button>
       </form>
 
+      <div className="purchases-section">
+        <h2>Your Purchases</h2>
+        <ul>
+          {purchases.map((purchase, index) => (
+            <li key={index}>
+              {purchase.productName} - {purchase.date}
+            </li>
+          ))}
+        </ul>
+      </div>
+
       {user.isSeller && (
         <div className="seller-section">
           <h3>Your Products</h3>
-          <form onSubmit={handleAddProduct}>
+          <form onSubmit={handleAddProduct} className="profileForm">
             <input
               type="text"
               placeholder="New Product"
@@ -163,17 +175,6 @@ const Profile = () => {
           </ul>
         </div>
       )}
-
-      <div className="purchases-section">
-        <h3>Your Purchases</h3>
-        <ul>
-          {purchases.map((purchase, index) => (
-            <li key={index}>
-              {purchase.productName} - {purchase.date}
-            </li>
-          ))}
-        </ul>
-      </div>
     </div>
   );
 };
