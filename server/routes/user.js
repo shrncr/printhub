@@ -19,12 +19,14 @@ router.post('/', async (req, res) => {
     console.log(
       "hey"
     )
-    const { name, emailAddress, password } = req.body;
+    const { name, emailAddress, password, isSeller, isBuyer } = req.body;
     console.log(req.body)
     const user = new User({
       name,
       emailAddress,
       password,
+      isSeller,
+      isBuyer
     });
     console.log('hey')
     await user.save();
@@ -58,7 +60,7 @@ router.post('/login', async (req, res) => {
     console.log(uemail)
     const upass = req.body.password
     console.log(upass)
-    const user = await User.findOne({"email":uemail, "password":upass});
+        const user = await User.findOne({"email":uemail, "password":upass});
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }else{
