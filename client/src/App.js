@@ -10,6 +10,7 @@ import { UserProvider } from './components/UserContext';
 import IndividualListing from './components/IndividualListing';
 import Checkout from './components/Checkout';
 import Profile from './components/Profile';
+import Sellerlisting from './components/Sellerlisting';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path = "/listings/:id" element = {<IndividualListing />}/>
         <Route path="/checkout" element={<Checkout />} />
         <Route path = "/profile" element = {<Profile />}/>
+        <Route path = "/create-listing" element = {<Sellerlisting />}/>
       </Routes>
     </Router>
     </UserProvider>
