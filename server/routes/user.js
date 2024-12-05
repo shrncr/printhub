@@ -2,25 +2,24 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const Buyer = require('../models/Buyer');
+const bcrypt = require('bcrypt');
+const saltRounds = 10; // the # of times the pw is hashed. higher num is more secure but more time
 
-//gets all users
-router.get('/', async (req, res) => {
-  try {
-    const users = await User.find();
-    res.json(users);
-  } catch (err) {
-    res.status(500).json({ message: 'Error retrieving users', error: err });
-  }
-});
-
-//adds new user
+// Adds a new user (Sign-up)
 router.post('/', async (req, res) => {
   try {
-    console.log(
-      "hey"
-    )
     const { name, emailAddress, password, isSeller, isBuyer } = req.body;
-    console.log(req.body)
+
+    const existingUser = await User.findOne({ //make sure no user w same email or user
+      $or: [{ emailAddress }, { name }] 
+    });
+
+    if (existingUser) {
+      return res.status(400).json({ 
+        message: 'Username or email already exists.' 
+      });
+    }
+    
     const user = new User({
       name,
       emailAddress,
@@ -28,65 +27,46 @@ router.post('/', async (req, res) => {
       isSeller,
       isBuyer
     });
-    console.log('hey')
+
     await user.save();
     res.status(201).json(user);
   } catch (err) {
-    res.status(400).json({ message: 'Error adding user', error: err });
+    res.status(400).json({ 
+      message: 'Error adding user', 
+      error: err.message 
+    });
   }
 });
 
-//updates a users info
-router.put('/:id', async (req, res) => {
-  try {
-    const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' });
-    }
-    res.json(user);
-  } catch (err) {
-    res.status(400).json({ message: 'Error updating user', error: err });
-  }
-});
-
-//updates a users info
 router.post('/login', async (req, res) => {
- console.log(
-  "bof"
- )
   try {
-    console.log("je")
-    let uemail = req.body.email
-    console.log(uemail)
-    const upass = req.body.password
-    console.log(upass)
-        const user = await User.findOne({"email":uemail, "password":upass});
+    const { email, password } = req.body;
+
+    // Find user by email
+    const user = await User.findOne({ emailAddress: email });
     if (!user) {
-      return res.status(404).json({ message: 'User not found' });
-    }else{
-      console.log(user)
-      res.status(200).json(user);
+      return res.status(404).json({ message: 'User not found.' });
     }
-    console.log("skay")
+    console.log(user.password)
+    console.log(password)
+    const isMatch = await bcrypt.compare(password, user.password);
+    
+    if (!isMatch) {
+      console.log("fe")
+      res.status(401).json({ message: 'Incorrect password.' });
+    } else{
+res.status(200).json(user);
+    }
+
     
   } catch (err) {
-    console.log("antislap")
-    res.status(400).json({ message: 'Error updating user', error: err });
+    res.status(400).json({ 
+      message: 'Error during login', 
+      error: err.message 
+    });
   }
 });
 
-//bye bye user
-router.delete('/:id', async (req, res) => {
-  try {
-    const user = await User.findByIdAndDelete(req.params.id);
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' });
-    }
-    res.json({ message: 'User deleted' });
-  } catch (err) {
-    res.status(500).json({ message: 'Error deleting user', error: err });
-  }
-});
 
 module.exports = router;
  

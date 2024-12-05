@@ -23,7 +23,6 @@ const Login = () => {
     setLoginError('');
 
     try {
-      // Send login request to your backend
       const response = await axios.post('https://printhubback.vercel.app/users/login', {
         email:loginEmail,
         password:loginPassword,
@@ -38,11 +37,11 @@ const Login = () => {
       // Set user data in local state
       console.log(userData)
      // setUserInfo(userData);
-      login(userData)
+      login(userData) 
 
       alert('Login successful!');
     } catch (err) {
-      setLoginError('Login failed. Please check your email and password.');
+      setLoginError(err.message);
     }
   };
 
