@@ -35,7 +35,7 @@ router.put('/:id', async (req, res) => {
 });
 
 //delete listing
-router.delete('/listings:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     const listing = await Listing.findByIdAndDelete(req.params.id);
     if (!listing) return res.status(404).json({ message: 'Listing not found' });
