@@ -1,22 +1,33 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useEffect, useContext } from "react";
 import Cookies from 'js-cookie';
 
-const UserContext = createContext(); //this is what youll import
+// Create the context
+const UserContext = createContext(); 
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  const login = (userData) => {//logs u in
-    console.log(userData);
-    setUser(userData);//all of your data
+  // On component mount, retrieve user data from cookies
+  useEffect(() => {
+    const userData = Cookies.get('user'); // Retrieve the user data from the cookie
+    if (userData) {
+      setUser(JSON.parse(userData)); // Parse and set user data if cookie exists
+    }
+  }, []);
+
+  const login = (userData) => {
+    // Log in the user and store their data in a cookie
+    setUser(userData);
+    Cookies.set('user', JSON.stringify(userData), { expires: 7 }); // Cookie expires in 7 days
   };
 
-  const logout = () => {//logs u out
-    Cookies.remove(user._id);
+  const logout = () => {
+    // Log out the user and remove the cookie
+    Cookies.remove('user'); // Clear the user cookie
     setUser(null);
   };
 
-  return ( //so u can check out the user info, or import the login/logout functionality
+  return (
     <UserContext.Provider value={{ user, login, logout }}>
       {children}
     </UserContext.Provider>
