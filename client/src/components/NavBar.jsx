@@ -36,7 +36,7 @@ export default function NavBar() {
         <Link to="/profile">My Account</Link>
       </li>
       <li>
-        <Link to="/create-listing">Create Listing</Link>
+        <Link to="/seller-listing">Create Listing</Link>
       </li>
       <li>
         <Link to="/my-listings">My Listings</Link>
