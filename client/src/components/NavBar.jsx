@@ -72,7 +72,7 @@ export default function NavBar() {
 
   return (
     <header className="navbar">
-      <h1 className="logo">PRINTHUB</h1>
+      <h1 className="logo">PrintHub</h1>
       <form className="searchBar" onSubmit={handleSearch}>
         <input
           type="text"

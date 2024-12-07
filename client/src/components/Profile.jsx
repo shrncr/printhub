@@ -160,8 +160,9 @@ const Profile = () => {
 
       {user.isSeller && (
         <div className="seller-section">
-          <h3>Your Products</h3>
+          
           <form onSubmit={handleAddProduct} className="profileForm">
+          <h3>Your Products</h3>
             <input
               type="text"
               placeholder="New Product"

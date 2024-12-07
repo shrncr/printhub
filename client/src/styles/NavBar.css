@@ -1,5 +1,12 @@
 /* NavBar.css */
-
+@font-face{
+  font-family: 'LogoFont';
+  src: url('../styles/fonts/Glitch\ inside.otf');
+}
+@font-face {
+  font-family: 'LinkFont';
+  src: url('../styles/fonts/GeosansLight.ttf');
+}
 /* General Styling for the Navbar */
 .navbar {
     display: flex;
@@ -7,7 +14,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0px 20px;
-    background-color: white;
+    background-color:rgb(34, 33, 33);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     height: 10vh;
     overflow:hidden;
@@ -16,11 +23,12 @@
   
   /* Logo Styling */
   .logo {
-    font-size: 1.8em;
+    font-size: 1.9em;
     font-weight: bold;
-    color: #000; /* Black text for the logo */
+    color: rgb(68, 3, 219); /* Black text for the logo */
     margin: 0;
     white-space: nowrap;
+    font-family: 'LogoFont';
   }
   
   /* Navigation Links */
@@ -33,18 +41,20 @@
     flex-wrap: nowrap;
     white-space: nowrap;
     overflow-x: auto;
+    font-family: 'LinkFont';
   }
   
   .nav-links li {
-    font-size: 1em;
+    font-size: 1.2em;
     flex-shrink:0;
   }
   
   .nav-links a {
     text-decoration: none;
-    color: #000; /* Black text for links */
+    color: whitesmoke; /* Black text for links */
     font-weight: 500;
     transition: color 0.3s ease;
+    
   }
   
   .nav-links a:hover {
@@ -69,5 +79,13 @@
     display: flex;
     max-width: 500px;
     flex: 1;
+    background-color: rgb(34, 33, 33);
+  }
+  .searchBar input{
+    background-color: rgb(34, 33, 33);
+  }
+
+  body{
+    background-color: whitesmoke;
   }
   
