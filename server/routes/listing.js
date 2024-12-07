@@ -34,6 +34,28 @@ router.put('/:id', async (req, res) => {
   }
 });
 
+//filer by listingid
+router.get('/:sellerId', async (req, res) => {
+  try {
+    console.log("hi")
+    const { sellerId } = req.params;
+    console.log("hi2")
+    if (!sellerId) {
+      return res.status(400).json({ message: 'nos eler id' });
+    }
+    const listings = await Listing.find({ sellerId });
+
+    if (listings.length == 0) {
+      return res.status(404).json({ message: 'no listings' });
+    }
+
+    res.json(listings);
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+});
+
+
 // Delete listing
 router.delete('/:id', async (req, res) => {
   try {
@@ -55,6 +77,7 @@ router.put('/update-stock', async (req, res) => {
     if (!listing) {
       return res.status(404).json({ message: 'Listing not found' });
     }
+
 
     // Check if sufficient stock is available
     if (listing.stock < quantity) {

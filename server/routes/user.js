@@ -9,7 +9,6 @@ const saltRounds = 10; // the # of times the pw is hashed. higher num is more se
 router.post('/', async (req, res) => {
   try {
     const { name, emailAddress, password, isSeller, isBuyer } = req.body;
-
     const existingUser = await User.findOne({ //make sure no user w same email or user
       $or: [{ emailAddress }, { name }] 
     });

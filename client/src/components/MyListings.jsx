@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import "../styles/MyListings.css";
+import { useUser } from "./UserContext";
 
 const MyListings = () => {
+  const { user,logout, login, } = useUser();
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -19,13 +21,14 @@ const MyListings = () => {
   const fetchMyListings = async () => {
     try {
       setLoading(true);
-      const sellerId = Cookies.get("sessionId"); // Get the sellerId from cookies
+      console.log(user)
+      const sellerId = user._id; // Get the sellerId from cookies
       if (!sellerId) {
         setError("No seller ID found. Please log in again.");
         return;
-      }
+      } 
 
-      const response = await axios.get(`https://printhubback.vercel.app/listings?sellerId=${sellerId}`);
+      const response = await axios.get(`https://printhubback.vercel.app/listings/${sellerId}`);
       setListings(response.data); // Set only the seller's listings
     } catch (err) {
       setError("Failed to fetch your listings. Please try again.");
