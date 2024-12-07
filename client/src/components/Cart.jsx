@@ -58,7 +58,9 @@ const CartPage = () => {
           {cartItems.map((item) => (
             <li key={item.listingId}>
               <img src={item.image || 'https://via.placeholder.com/200'} alt={item.listingName} style={{ width: '100px', height: '100px' }} />
-              <strong>Name:</strong> {item.listingName}, <strong>Price:</strong> ${item.price}, <strong>Quantity:</strong> {item.quantity}
+              <strong>Name:</strong> {item.listingName} 
+              <strong>Price:</strong> ${item.price} 
+              <strong>Quantity:</strong> {item.quantity}
               <br />
               <p>{item.listingDesc}</p>
               <button className="removeButt" onClick={() => handleRemoveItem(item.listingId)}>

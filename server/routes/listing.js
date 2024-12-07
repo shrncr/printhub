@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Listing = require('../models/Listing');
 
-//gets all listings
+// Gets all listings
 router.get('/', async (req, res) => {
   try {
     const listings = await Listing.find();
@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-//new listing
+// New listing
 router.post('/', async (req, res) => {
   try {
     const listing = new Listing(req.body);
@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-//update listing
+// Update listing
 router.put('/:id', async (req, res) => {
   try {
     const listing = await Listing.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -34,7 +34,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-//delete listing
+// Delete listing
 router.delete('/:id', async (req, res) => {
   try {
     const listing = await Listing.findByIdAndDelete(req.params.id);
@@ -42,6 +42,34 @@ router.delete('/:id', async (req, res) => {
     res.json({ message: 'Listing deleted' });
   } catch (err) {
     res.status(500).json({ message: 'Error deleting listing', error: err });
+  }
+});
+
+// Deduct stock for purchase
+router.put('/update-stock', async (req, res) => {
+  try {
+    const { listingId, quantity } = req.body;
+
+    // Find the listing by ID
+    const listing = await Listing.findById(listingId);
+    if (!listing) {
+      return res.status(404).json({ message: 'Listing not found' });
+    }
+
+    // Check if sufficient stock is available
+    if (listing.stock < quantity) {
+      return res.status(400).json({ message: 'Insufficient stock available' });
+    }
+
+    // Deduct the stock
+    listing.stock -= quantity;
+
+    // Save the updated listing
+    await listing.save();
+
+    res.json({ message: 'Stock updated successfully', listing });
+  } catch (err) {
+    res.status(500).json({ message: 'Error updating stock', error: err });
   }
 });
 

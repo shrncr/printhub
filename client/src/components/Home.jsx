@@ -38,8 +38,8 @@ const HomePage = () => {
       else{
         cart.push({
           listingId,
-          listingName,
-          price,
+          listingName: listings.find(listing => listing._id ===listingId).listingName,
+          price: listings.find(listing => listing._id ===listingId).price,
           quantity:1,
           image: listings.find(listing=> listing._id === listingId).image,
           listingDesc: listings.find(listing => listing._id ===listingId).listingDesc,
