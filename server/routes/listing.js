@@ -34,6 +34,22 @@ router.put('/:id', async (req, res) => {
   }
 });
 
+// Get listing by product ID (New Route)
+router.get('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    if (!id) {
+      return res.status(404).json({ message: 'No id Given' });
+    }
+    const listing = await Listing.find(id);  // Find listing by the ID
+
+
+    res.json(listing);  // Return the listing data if found
+  } catch (err) {
+    res.status(500).json({ message: 'Error retrieving listing', error: err });
+  }
+});
+
 //filer by listingid
 router.get('/:sellerId', async (req, res) => {
   try {

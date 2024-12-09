@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
+import "../styles/HomePage.css";
 
 const HomePage = () => {
   const [listings, setListings] = useState([]);
@@ -135,7 +136,7 @@ const HomePage = () => {
                     Add to Cart
                   </button>
                   <Link
-                    to={`/listing/${listing._id}`}
+                    to={`/listings/${listing._id}`}
                     style={{
                       display: 'block',
                       marginTop: '1rem',

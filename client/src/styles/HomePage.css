@@ -1,10 +1,13 @@
+@font-face {
+  font-family: 'LinkFont';
+  src: url('../styles/fonts/GeosansLight.ttf');
+}
 
-body {
+.homepage {
     margin: 0;
     padding: 0;
-    font-family: "Poppins", sans-serif;
-    background-color: #fff;
-    color: #333;
+    font-family:'LinkFont';
+    background-color: whitesmoke;
     line-height: 1.6;
   }
   
@@ -18,23 +21,6 @@ body {
     font-weight: 300;
   }
   
-  /* Header Navigation */
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 50px;
-  }
-  
-  .logo {
-    font-size: 1.8em;
-    font-weight: bold;
-  }
-  
-  .menu a {
-    margin-left: 20px;
-    font-size: 1em;
-  }
   
   /* Hero Section */
   .hero {
@@ -43,11 +29,13 @@ body {
     align-items: center;
     padding: 50px;
     margin: 20px 0;
+  
   }
   
   .hero-text {
     flex: 1;
     max-width: 40%;
+  
   }
   
   .hero-text h2 {
