@@ -7,6 +7,7 @@ export default function NavBar() {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
   const { user } = useUser(); // Get user data from context
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -69,10 +70,20 @@ export default function NavBar() {
       
     </>
   );
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   return (
     <header className="navbar">
       <h1 className="logo">PrintHub</h1>
+
+      <div className="hamburger" onClick={toggleMenu}>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+
       <form className="searchBar" onSubmit={handleSearch}>
         <input
           type="text"
@@ -82,8 +93,9 @@ export default function NavBar() {
           className="searchInput"
         />
       </form>
+
       <nav>
-        <ul className="nav-links">
+         <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
           {user ? (
             <>
               {commonLinks}

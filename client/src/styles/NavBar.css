@@ -14,9 +14,9 @@
     justify-content: space-between;
     align-items: center;
     padding: 0px 20px;
-    background-color:rgb(34, 33, 33);
+    background-color:rgb(0, 0, 0);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    height: 10vh;
+    
     overflow:hidden;
     flex-wrap: nowrap;
   }
@@ -25,7 +25,10 @@
   .logo {
     font-size: 1.9em;
     font-weight: bold;
-    color: rgb(68, 3, 219); /* Black text for the logo */
+    /*color:orange;
+    text-shadow: 0px 3px 3px orangered;*/
+    color: rgb(43, 99, 253); /*Logo Text color*/
+    text-shadow: 0px 3px 3px rgb(0, 0, 247);
     margin: 0;
     white-space: nowrap;
     font-family: 'LogoFont';
@@ -42,6 +45,9 @@
     white-space: nowrap;
     overflow-x: auto;
     font-family: 'LinkFont';
+  }
+  .nav-links.active{
+    display:flex;
   }
   
   .nav-links li {
@@ -69,9 +75,41 @@
       padding: 20px;
     }
   
-    .nav-links {
+    .nav-links{
       flex-direction: column;
       gap: 10px;
+      display:none;
+    }
+    /* Hamburger Menu */
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .hamburger div {
+        width: 30px;
+        height: 4px;
+        background-color: #fff;
+        transition: all 0.3s;
+    }
+
+    /* Show links and search bar when hamburger is clicked */
+    .navbar.open .nav-links{
+        display: flex;
+    }
+
+    .navbar.open .hamburger div:nth-child(1) {
+        transform: rotate(45deg) translateY(8px);
+    }
+
+    .navbar.open .hamburger div:nth-child(2) {
+        opacity: 0;
+    }
+
+    .navbar.open .hamburger div:nth-child(3) {
+        transform: rotate(-45deg) translateY(-8px);
     }
   }
   
@@ -79,10 +117,10 @@
     display: flex;
     max-width: 500px;
     flex: 1;
-    background-color: rgb(34, 33, 33);
+    background-color: rgb(0, 0, 0);
   }
   .searchBar input{
-    background-color: rgb(34, 33, 33);
+    background-color: rgb(0, 0, 0);
   }
 
   body{

@@ -115,7 +115,7 @@ const ListingsPage = () => {
                   Add to Cart
                 </button>
                 <Link
-                  to={`/listing/${listing._id}`}
+                  to={`/listings/${listing._id}`}
                   style={{
                     display: 'block',
                     marginTop: '1rem',

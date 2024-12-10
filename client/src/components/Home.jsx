@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
+import "../styles/HomePage.css";
 
 const HomePage = () => {
   const [listings, setListings] = useState([]);
@@ -55,10 +56,10 @@ const HomePage = () => {
   return (
     <div className="homepage" style={{ fontFamily: 'Arial, sans-serif' }}>
       {/* Hero Section */}
-      <section className="hero" style={{ display: 'flex', alignItems: 'center', padding: '2rem' }}>
+      <section className="hero">
         <div className="hero-text" style={{ flex: 1, marginRight: '2rem' }}>
           <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Your Official Place for 3D Printing</h2>
-          <a
+          {/* <a
             href="/project"
             className="view-project"
             style={{
@@ -68,15 +69,20 @@ const HomePage = () => {
             }}
           >
             View Project →
-          </a>
-        </div>
-        <div className="hero-image" style={{ flex: 1 }}>
+          </a> */}
           <img
-            src="https://via.placeholder.com/600x400" // Replace with your image URL
+            className='hero-image'
+            src="/printer.png" // Replace with your image URL
+            alt="Hero"
+          />
+        </div>
+        {/* <div className="hero-image" style={{ flex: 1 }}>
+          <img
+            src="/printer.png" // Replace with your image URL
             alt="Hero"
             style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}
           />
-        </div>
+        </div> */}
       </section>
 
       {/* Recommended Section */}
@@ -135,7 +141,7 @@ const HomePage = () => {
                     Add to Cart
                   </button>
                   <Link
-                    to={`/listing/${listing._id}`}
+                    to={`/listings/${listing._id}`}
                     style={{
                       display: 'block',
                       marginTop: '1rem',
