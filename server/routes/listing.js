@@ -55,6 +55,26 @@ router.get('/:sellerId', async (req, res) => {
   }
 });
 
+router.get('/single/:Id', async (req, res) => {
+  try {
+    console.log("hivxv")
+    const { Id } = req.params;
+    console.log("hi2vxvx")
+    if (!Id) {
+      return res.status(400).json({ message: 'nos eler id' });
+    }
+    const listings = await Listing.findOne({ Id });
+
+    if (listings.length == 0) {
+      return res.status(404).json({ message: 'no listings' });
+    }
+
+    res.json(listings);
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+});
+
 
 // Delete listing
 router.delete('/:id', async (req, res) => {
