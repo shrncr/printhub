@@ -35,7 +35,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // Get listing by product ID (New Route)
-router.get('/:id', async (req, res) => {
+router.get('/single/:id', async (req, res) => {
   try {
     const { id } = req.params;
     if (!id) {

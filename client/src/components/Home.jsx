@@ -58,7 +58,7 @@ const HomePage = () => {
       {/* Hero Section */}
       <section className="hero">
         <div className="hero-text" style={{ flex: 1, marginRight: '2rem' }}>
-          <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Your Official Place for 3D Printing</h2>
+          <h2>Your Official Place for 3D Printing</h2>
           {/* <a
             href="/project"
             className="view-project"
@@ -141,7 +141,7 @@ const HomePage = () => {
                     Add to Cart
                   </button>
                   <Link
-                    to={`/listings/${listing._id}`}
+                    to={`/listings/single/${listing._id}`}
                     style={{
                       display: 'block',
                       marginTop: '1rem',
