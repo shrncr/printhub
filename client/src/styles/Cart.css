@@ -1,24 +1,34 @@
+@font-face {
+    font-family: 'ProductFont';
+    src: url('../styles/fonts/Oxanium-SemiBold.ttf');
+  }
 .cart{
     display: flex;
     flex-direction: column;
-    align-content: center;
-    box-sizing: border-box;
-    
-    
+    justify-content: space-evenly;
+    align-items: center;
+    font-family: 'ProductFont';
+    padding: 20px;
+}
+.cart h2{
+    font-family: "MainFont";
+    font-size: 1.8em;
 }
 
 .cartList{
     display:flex;
     flex-direction: column;
+    width:100%;
+    max-width: 800px;
 }
 .cartList li{
     display:flex;
     flex-direction: row;
     justify-content: space-around;
     align-items:center;
-    margin:20px;
-    padding: 20px;
-    width: 80%;
+    margin:5px 0;
+    padding: 10px;
+    width: 100%;
     
     
 }
@@ -28,7 +38,7 @@
     height:43px;
     border-radius: 30px;
     border: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow here */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 button:hover{
@@ -40,6 +50,34 @@ button:hover{
     width: 30%;
     max-width: 300px;
     border: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow here */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background: rgb(43, 99, 253);
+    color: #fff;
     align-self: flex-end;
+    margin-top: 20px;
+    font-family: 'ProductFont';
 }
+.details{
+    display: flex;
+    flex-direction: column;
+    width:60%;
+    margin:20px;
+}
+.QuanPrice{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.name{
+    font-family: 'BoldFont';
+    font-size: 1.1em;
+}
+
+.prodImg{
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+

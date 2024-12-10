@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { Link, useLocation } from 'react-router-dom';
+import "../styles/Listings.css"
 
 const ListingsPage = () => {
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [alertMessage, setAlertMessage] = useState('');
 
   const location = useLocation();
   const params = new URLSearchParams(location.search);
@@ -50,7 +52,12 @@ const ListingsPage = () => {
         })
       }
       Cookies.set('cart', JSON.stringify(cart));
-      alert('Item added to Cart!');
+      setAlertMessage('Item added to Cart!');
+
+      // Clear the alert message after 2 seconds
+      setTimeout(() => {
+        setAlertMessage('');
+      }, 2000);
     } catch (err) {
       console.error('Error adding item to cart:', err);
     }
@@ -65,9 +72,16 @@ const ListingsPage = () => {
 
   return (
     <div>
+      
+      {alertMessage && (
+        <div className="alert">
+          {alertMessage}
+        </div>
+      )}
+
       {/* Listings Section */}
-      <div style={{ padding: '2rem' }}>
-        <h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>Available Products</h2>
+      <div className="Main"style={{ padding: '2rem' }}>
+        <h2 >Available Products</h2>
         <div
           style={{
             display: 'grid',
@@ -91,27 +105,19 @@ const ListingsPage = () => {
                 style={{ width: '100%', height: '200px', objectFit: 'cover' }}
               />
               <div style={{ padding: '1rem' }}>
-                <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>
-                  {listing.listingName}
-                </h3>
-                {listing.oldPrice && (
-                  <p style={{ color: '#888', textDecoration: 'line-through' }}>
-                    ${listing.oldPrice}
-                  </p>
+                <div className = "Products">
+                  <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>
+                    {listing.listingName}
+                  </h3>
+                  {listing.oldPrice && (
+                    <p style={{ color: '#888', textDecoration: 'line-through' }}>
+                      ${listing.oldPrice}
+                    </p>
                 )}
-                <p style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>${listing.price}</p>
-                <button
-                  onClick={() => handleAddToCart(listing._id, listing.listingName, listing.price)}
-                  style={{
-                    width: '100%',
-                    padding: '0.5rem',
-                    background: '#007bff',
-                    color: '#fff',
-                    border: 'none',
-                    borderRadius: '4px',
-                    cursor: 'pointer',
-                  }}
-                >
+                <p style={{ fontSize: '1.2rem' }}>${listing.price}</p>
+                </div>
+               
+                <button className="AddCartButt" onClick={() => handleAddToCart(listing._id, listing.listingName, listing.price)}>
                   Add to Cart
                 </button>
                 <Link

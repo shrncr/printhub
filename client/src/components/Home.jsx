@@ -8,6 +8,7 @@ const HomePage = () => {
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [alertMessage, setAlertMessage] = useState('');
 
   // Fetch listings from the backend
   const fetchListings = async () => {
@@ -47,7 +48,12 @@ const HomePage = () => {
         })
       }
       Cookies.set('cart', JSON.stringify(cart));
-      alert('Item added to Cart!');
+      setAlertMessage('Item added to Cart!');
+
+      // Clear the alert message after 2 seconds
+      setTimeout(() => {
+        setAlertMessage('');
+      }, 2000);
     } catch (err) {
       console.error('Error adding item to cart:', err);
     }
@@ -55,6 +61,12 @@ const HomePage = () => {
 
   return (
     <div className="homepage" style={{ fontFamily: 'Arial, sans-serif' }}>
+      {alertMessage && (
+        <div className="alert">
+          {alertMessage}
+        </div>
+      )}
+      
       {/* Hero Section */}
       <section className="hero">
         <div className="hero-text" style={{ flex: 1, marginRight: '2rem' }}>
@@ -116,7 +128,8 @@ const HomePage = () => {
                   alt={listing.listingName}
                   style={{ width: '100%', height: '200px', objectFit: 'cover' }}
                 />
-                <div style={{ padding: '1rem' }}>
+                <div className="recommendedText" style={{ padding: '1rem' }}>
+                  <div className="NamePrice">
                   <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>
                     {listing.listingName}
                   </h3>
@@ -126,18 +139,9 @@ const HomePage = () => {
                     </p>
                   )}
                   <p style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>${listing.price}</p>
-                  <button
-                    onClick={() => handleAddToCart(listing._id)}
-                    style={{
-                      width: '100%',
-                      padding: '0.5rem',
-                      background: '#007bff',
-                      color: '#fff',
-                      border: 'none',
-                      borderRadius: '4px',
-                      cursor: 'pointer',
-                    }}
-                  >
+                  </div>
+                  
+                  <button className = "AddCartButt"onClick={() => handleAddToCart(listing._id)}>
                     Add to Cart
                   </button>
                   <Link

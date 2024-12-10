@@ -57,12 +57,16 @@ const CartPage = () => {
         <ul className="cartList">
           {cartItems.map((item) => (
             <li key={item.listingId}>
-              <img src={item.image || 'https://via.placeholder.com/200'} alt={item.listingName} style={{ width: '100px', height: '100px' }} />
-              <strong>Name:</strong> {item.listingName} 
-              <strong>Price:</strong> ${item.price} 
-              <strong>Quantity:</strong> {item.quantity}
-              <br />
-              <p>{item.listingDesc}</p>
+              <img className="prodImg" src={item.image || 'https://via.placeholder.com/200'} alt={item.listingName} style={{ width: '100px', height: '100px' }} />
+              <div className="details">
+                <p className="name">{item.listingName} </p>
+                <div className="QuanPrice">
+                  <p className="price">Price: ${item.price} </p>
+                  <p className="quantity">Quantity: {item.quantity} </p> 
+                </div>
+              </div>
+              
+              
               <button className="removeButt" onClick={() => handleRemoveItem(item.listingId)}>
                 <img src="/trash.png" style={{ width: '20px', height: '20px' }} alt="Remove" />
               </button>
