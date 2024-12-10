@@ -38,13 +38,14 @@ router.put('/:id', async (req, res) => {
 router.get('/single/:id', async (req, res) => {
   try {
     const { id } = req.params;
+    console.log(id)
     if (!id) {
       return res.status(404).json({ message: 'No id Given' });
     }
-    const listing = await Listing.find(id);  // Find listing by the ID
+    const listing = await Listing.findOne({'_id':id});  // Find listing by the ID
+    console.log(listing)
 
-
-    res.json(listing);  // Return the listing data if found
+    res.status(200).json(listing);  // Return the listing data if found
   } catch (err) {
     res.status(500).json({ message: 'Error retrieving listing', error: err });
   }
@@ -71,25 +72,6 @@ router.get('/:sellerId', async (req, res) => {
   }
 });
 
-router.get('/single/:Id', async (req, res) => {
-  try {
-    console.log("hivxv")
-    const { Id } = req.params;
-    console.log("hi2vxvx")
-    if (!Id) {
-      return res.status(400).json({ message: 'nos eler id' });
-    }
-    const listings = await Listing.findOne({ Id });
-
-    if (listings.length == 0) {
-      return res.status(404).json({ message: 'no listings' });
-    }
-
-    res.json(listings);
-  } catch (err) {
-    res.status(500).json({ error: err });
-  }
-});
 
 
 // Delete listing
