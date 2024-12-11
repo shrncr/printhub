@@ -158,7 +158,7 @@ const Profile = () => {
         </ul>
       </div>
 
-      {user.isSeller && (
+      {/* {user.isSeller && (
         <div className="seller-section">
           
           <form onSubmit={handleAddProduct} className="profileForm">
@@ -177,7 +177,7 @@ const Profile = () => {
             ))}
           </ul>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import "../styles/IndividualListings.css"
 
 const IndividualListing = () => {
   const { id } = useParams(); // Get the listing ID from the URL
@@ -9,6 +10,7 @@ const IndividualListing = () => {
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [alertMessage, setAlertMessage] = useState('');
 
   const fetchListing = async () => {
     try {
@@ -41,7 +43,12 @@ const IndividualListing = () => {
         });
       }
       Cookies.set('cart', JSON.stringify(cart));
-      alert('Item added to Cart!');
+      setAlertMessage('Item added to Cart!');
+
+      // Clear the alert message after 2 seconds
+      setTimeout(() => {
+        setAlertMessage('');
+      }, 2000);
     } catch (err) {
       console.error('Error adding item to cart:', err);
     }
@@ -56,36 +63,44 @@ const IndividualListing = () => {
   if (!listing) return <p>No listing found</p>;
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <h2>{listing.listingName}</h2>
-      <img
-        src={listing.image || 'https://via.placeholder.com/400'}
-        alt={listing.listingName}
-        style={{ width: '100%', height: '400px', objectFit: 'cover' }}
-      />
-      <p>{listing.listingDesc}</p>
-      <p>
-        {listing.oldPrice && (
-          <span style={{ color: '#888', textDecoration: 'line-through' }}>
-            ${listing.oldPrice}
-          </span>
-        )}
-        <span style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>${listing.price}</span>
-      </p>
-      <button
-        onClick={() => handleAddToCart(listing._id, listing.listingName, listing.price)}
-        style={{
-          padding: '0.5rem',
-          background: '#007bff',
-          color: '#fff',
-          border: 'none',
-          borderRadius: '4px',
-          cursor: 'pointer',
-        }}
-      >
-        Add to Cart
-      </button>
-    </div>
+    <>
+    {alertMessage && (
+        <div className="alert">
+          {alertMessage}
+        </div>
+      )}
+        <div className="main">
+          <div>
+            <img
+              className="pic"
+              src={listing.image || 'https://via.placeholder.com/400'}
+              alt={listing.listingName}
+              style={{ width: '100%', height: '400px', objectFit: 'cover' }}
+            />
+          </div>
+        
+          <div className="detailsIndiv">
+            <h2>{listing.listingName}</h2>
+              <p>{listing.listingDesc}</p>
+              <p>
+                {listing.oldPrice && (
+                  <span style={{ color: '#888', textDecoration: 'line-through' }}>
+                    ${listing.oldPrice}
+                  </span>
+                )}
+                <span style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>${listing.price}</span>
+              </p>
+              <button
+                onClick={() => handleAddToCart(listing._id, listing.listingName, listing.price)}
+                
+              >
+                Add to Cart
+              </button>
+          </div>
+        
+      </div>
+    </>
+    
   );
 };
 

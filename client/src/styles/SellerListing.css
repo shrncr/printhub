@@ -2,21 +2,23 @@
 
 /* Container for the seller listing page */
 .seller-listing {
-  max-width: 1200px;
+  max-width: 800px;
   margin: 40px auto;
   padding: 25px;
-  background-color: #ffffff;
+  background-color: whitesmoke;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  font-family: 'Arial', sans-serif;
+  font-family: 'MainFont';
 }
 
 /* Header Styles */
 .seller-listing h1 {
   text-align: center;
-  color: #2c3e50;
-  font-size: 24px;
+  color: black;
+  font-size: 25px;
   margin-bottom: 25px;
+  font-family: 'LinkFont';
+  
 }
 
 /* Success and Error Messages */
@@ -57,7 +59,7 @@
 
 .form-group input,
 .form-group textarea {
-  width: 100%;
+  width: 300px;
   padding: 12px;
   font-size: 15px;
   border: 1px solid #ced4da;
@@ -80,8 +82,8 @@
 
 /* Button Styles */
 .create-listing-button {
-  background-color: #007bff;
-  color: #ffffff;
+  background-color: whitesmoke;
+  color: black;
   border: none;
   padding: 12px;
   font-size: 16px;

@@ -17,6 +17,8 @@ const Login = () => {
   const [loginError, setLoginError] = useState('');
   const [signupError, setSignupError] = useState('');
   const [signupSuccess, setSignupSuccess] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -83,6 +85,9 @@ const Login = () => {
 console.log(user)
   },[user])
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
   return (
     <div class="forms">
       <div>
@@ -104,13 +109,24 @@ console.log(user)
             <div>
               <input
                 class="long"
-                type="password"
+                type={showPassword ? "text" : "password"}
                 placeholder="Password"
                 value={loginPassword}
                 onChange={(e) => setLoginPassword(e.target.value)}
                 required
               />
             </div>
+            <div>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={showPassword}
+                    onChange={togglePasswordVisibility}
+                  />
+                  Show Password
+                </label>
+              </div>
+
             <button type="submit">Login</button>
           </form>
           {/* <Link to="/signup" class="signup">SignUp</Link> */}
@@ -148,19 +164,31 @@ console.log(user)
             placeholder="Email Address"
             value={signupEmail}
             onChange={(e) => setSignupEmail(e.target.value)}
+            pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"
+            title="Please enter a valid email address"
             required
           />
         </div>
         <div>
           <input
             class="long"
-            type="password"
+            type={showPassword ? "text" : "password"}
             placeholder="Password"
             value={signupPassword}
             onChange={(e) => setSignupPassword(e.target.value)}
             required
           />
         </div>
+        <div>
+            <label>
+              <input
+                type="checkbox"
+                checked={showPassword}
+                onChange={togglePasswordVisibility}
+              />
+              Show Password
+            </label>
+          </div>
         <div class="radio">
           <label>
             <input

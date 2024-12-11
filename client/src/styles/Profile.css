@@ -6,7 +6,7 @@
     box-sizing: border-box;
     margin:20px 20px;
     padding: 30px;
-    flex-wrap: wrap;
+    flex-wrap:wrap;
     
 }
 
@@ -30,4 +30,13 @@
     max-width: 500px;
     border: 2px solid black;
     border-radius: 10px;
+    margin:20px;
+}
+
+.seller-section{
+    margin-top: 20px;
+}
+
+h2{
+    font-family: 'LinkFont';
 }

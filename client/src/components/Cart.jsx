@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
-import { useNavigate } from 'react-router-dom'; // For navigation
+import { useNavigate, Link } from 'react-router-dom'; // For navigation
 import "../styles/Cart.css";
 
 const CartPage = () => {
@@ -58,8 +58,10 @@ const CartPage = () => {
           {cartItems.map((item) => (
             <li key={item.listingId}>
               <img className="prodImg" src={item.image || 'https://via.placeholder.com/200'} alt={item.listingName} style={{ width: '100px', height: '100px' }} />
-              <div className="details">
-                <p className="name">{item.listingName} </p>
+              <div className="detailsCart">
+              <Link to={`/listings/single/${item.listingId}`} className="name">
+                  {item.listingName}
+                </Link>
                 <div className="QuanPrice">
                   <p className="price">Price: ${item.price} </p>
                   <p className="quantity">Quantity: {item.quantity} </p> 
@@ -74,7 +76,7 @@ const CartPage = () => {
           ))}
         </ul>
       )}
-      <button className="checkout" onClick={handleCheckout}>Checkout</button>
+      <button className="checkoutButt" onClick={handleCheckout}>Checkout</button>
     </div>
   );
 };

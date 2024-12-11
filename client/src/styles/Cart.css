@@ -11,7 +11,7 @@
     padding: 20px;
 }
 .cart h2{
-    font-family: "MainFont";
+    font-family: "LinkFont";
     font-size: 1.8em;
 }
 
@@ -45,33 +45,43 @@ button:hover{
     cursor: pointer;
 }
 
-.checkout{
+.checkoutButt{
     justify-self: right;
     width: 30%;
     max-width: 300px;
     border: none;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    background: rgb(43, 99, 253);
-    color: #fff;
+    background: whitesmoke;
+    color: black;
     align-self: flex-end;
     margin-top: 20px;
     font-family: 'ProductFont';
 }
-.details{
+.detailsCart{
     display: flex;
     flex-direction: column;
-    width:60%;
-    margin:20px;
+    width:80%;
+    margin:10px;
+    text-align: left;
+    
 }
 .QuanPrice{
     display:flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-top: 10px;
+    width:80%;
+    text-align: left;
+}
+
+.QuanPrice p {
+    margin: 0 10px; /* Add margin to individual elements */
 }
 
 .name{
     font-family: 'BoldFont';
-    font-size: 1.1em;
+    font-size: 1.3em;
+    text-align: left;
 }
 
 .prodImg{

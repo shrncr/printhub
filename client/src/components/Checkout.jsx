@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios"; // For backend requests
 import "../styles/Checkout.css";
+import Cookies from 'js-cookie';
 
 const Checkout = () => {
   const location = useLocation();
@@ -19,10 +20,11 @@ const Checkout = () => {
       );
 
       await Promise.all(promises);
+      Cookies.remove('cart');
 
       alert("Purchase confirmed! Inventory updated.");
       // Optionally navigate to a success page or clear cart state
-      navigate("/thank-you"); // Replace "/thank-you" with your desired route
+      navigate("/cart"); // Replace "/thank-you" with your desired route
     } catch (err) {
       console.error("Error confirming purchase:", err);
       alert("Failed to confirm purchase. Please try again.");
