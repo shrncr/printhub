@@ -43,4 +43,19 @@
     z-index: 1000;
     font-family: 'BoldFont';
   }
+  @media (max-width: 768px) {
+    .Main h2 {
+        font-size: 1.5em; /* Adjust font size */
+    }
+
+    .Products {
+        flex-direction: column; /* Stack products vertically */
+        align-items: center; /* Center align items */
+    }
+
+    .AddCartButt {
+        width: auto; /* Adjust width */
+        padding: 1rem; /* Add more padding */
+    }
+}
   
