@@ -104,3 +104,46 @@
     display:flex;
     justify-content: space-between;
   }
+
+  @media (max-width: 768px) {
+    /* Adjust hero section for smaller screens */
+    .hero {
+      padding: 20px;
+    }
+  
+    .hero-text h2 {
+      font-size: 1.8em;
+    }
+  
+    .hero-image {
+      width: 100%;
+      height: auto;
+    }
+  
+    /* Adjust recommended section */
+    .recommended h2 {
+      font-size: 1.6em;
+    }
+  
+    .recommended-images {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .recommended-images img {
+      width: 120px;
+      height: 120px;
+    }
+  
+    /* Adjust button and name-price layout */
+    .AddCartButt {
+      width: 100%;
+      padding: 0.4rem;
+    }
+  
+    .NamePrice {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  
