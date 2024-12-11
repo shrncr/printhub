@@ -8,7 +8,7 @@
     font-family: 'ProductFont';
 }
 .Main h2{
-    textAlign: center;
+    text-align: center;
      margin-bottom:2rem;
      font-family: 'LinkFont';
      font-size: 1.8em;

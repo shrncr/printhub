@@ -74,4 +74,45 @@ button{
     height: 50vh;
     
 }
+@media (max-width: 768px) {
+    .forms {
+        padding-top: 10vh;
+    }
+
+    form h2 {
+        font-size: 1.5em;
+    }
+
+    input.long {
+        width: 80%; /* Make inputs more compact on small screens */
+    }
+
+    .radio {
+        flex-direction: column;
+        justify-content: flex-start; /* Stack radio buttons vertically */
+    }
+
+    button {
+        font-size: 1em; /* Adjust button size on smaller screens */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .forms {
+        flex-direction: column;
+        padding-top: 20px; /* Less padding on small screens */
+    }
+
+    form {
+        max-width: 90%; /* Allow form to take more space on small screens */
+    }
+
+    .centerline {
+        display: none; /* Hide the centerline on small screens */
+    }
+    .radio{
+        display:flex;
+        flex-direction: row;
+    }
+}
 

@@ -19,9 +19,6 @@ export default function NavBar() {
   // Define role-specific links
   const buyerLinks = (
     <>
-    <li>
-        <Link to="/profile">My Account</Link>
-      </li>
       <li>
         <Link to="/listings">Shop All</Link>
       </li>
@@ -33,9 +30,6 @@ export default function NavBar() {
 
   const sellerLinks = (
     <>
-    <li>
-        <Link to="/profile">My Account</Link>
-      </li>
       <li>
         <Link to="/seller-listing">Create Listing</Link>
       </li>
@@ -53,6 +47,9 @@ export default function NavBar() {
       <li>
         <Link to="/login">Log in/out</Link>
       </li>
+      <li>
+        <Link to={user ? "/profile" : "/login"}>My Account</Link>
+      </li>
     </>
   );
 
@@ -66,6 +63,9 @@ export default function NavBar() {
       </li>
       <li>
         <Link to="/login">Log In</Link>
+      </li>
+      <li>
+        <Link to={user ? "/profile" : "/login"}>My Account</Link>
       </li>
       
     </>
