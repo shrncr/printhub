@@ -61,41 +61,45 @@ const HomePage = () => {
 
   return (
     <div className="homepage" style={{ fontFamily: 'Arial, sans-serif' }}>
-      {alertMessage && (
-        <div className="alert">
-          {alertMessage}
-        </div>
-      )}
-      
-      {/* Hero Section */}
-      <section className="hero">
-        <div className="hero-text" style={{ flex: 1, marginRight: '2rem' }}>
-          <h2>Your Official Place for 3D Printing</h2>
-          {/* <a
-            href="/project"
-            className="view-project"
-            style={{
-              textDecoration: 'none',
-              color: '#007bff',
-              fontWeight: 'bold',
-            }}
-          >
-            View Project →
-          </a> */}
-          <img
-            className='hero-image'
-            src="/printer.png" // Replace with your image URL
-            alt="Hero"
-          />
-        </div>
-        {/* <div className="hero-image" style={{ flex: 1 }}>
-          <img
-            src="/printer.png" // Replace with your image URL
-            alt="Hero"
-            style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}
-          />
-        </div> */}
-      </section>
+  {alertMessage && (
+    <div className="alert">
+      {alertMessage}
+    </div>
+  )}
+  
+  {/* Hero Section */}
+
+  <div className="homepage" style={{ fontFamily: 'Arial, sans-serif' }}>
+  {alertMessage && (
+    <div className="alert">
+      {alertMessage}
+    </div>
+  )}
+
+  {/* Hero Section */}
+  <section className="hero">
+    {/* Background Video */}
+    <video
+      autoPlay
+      muted
+      loop
+      className="hero-video"
+    >
+      <source src="/animate.mov" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    {/* Text Overlay */}
+    <div className="hero-text">
+      <h2 className="typing">Your Official Place for 3D Printing</h2>
+    </div>
+  </section>
+</div>
+
+
+
+
+
 
       {/* Recommended Section */}
       <section className="recommended" style={{ padding: '2rem' }}>
