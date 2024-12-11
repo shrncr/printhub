@@ -65,7 +65,7 @@ export default function NavBar() {
         <Link to="/login">Log In</Link>
       </li>
       <li>
-        <Link to={user ? "/profile" : "/login"}>My Account</Link>
+       <Link to="/cart">Cart</Link>
       </li>
       
     </>
