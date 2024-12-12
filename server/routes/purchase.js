@@ -12,10 +12,11 @@ router.get('/', async (req, res) => {
   }
 }); 
 //filer by listingid
-router.get('/:sellerId', async (req, res) => {
+router.get('/:userId', async (req, res) => {
   try {
     console.log("hi")
     const { userId } = req.params;
+    console.log(req.params)
     console.log("hi2")
     if (!userId) {
       return res.status(400).json({ message: 'nos eler id' });
