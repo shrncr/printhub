@@ -3,12 +3,19 @@
 /* Container for the seller listing page */
 .seller-listing {
   max-width: 800px;
-  margin: 40px auto;
-  padding: 25px;
-  background-color: whitesmoke;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin: 20px auto; /* Reduced margin for mobile */
+  padding: 15px; /* Reduced padding for mobile */
+  background-color: black;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   font-family: 'MainFont';
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+  .seller-listing {
+    max-width: 95%; /* Adjust to fit screen width */
+  }
 }
 
 /* Header Styles */

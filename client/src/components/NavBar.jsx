@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useUser } from "./UserContext"; // Assuming you're using a UserContext
 import "../styles/NavBar.css"; // Import the CSS file for navbar styling
 
 export default function NavBar() {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
+  const location = useLocation(); // Hook to get the current route
   const { user } = useUser(); // Get user data from context
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -65,14 +66,17 @@ export default function NavBar() {
         <Link to="/login">Log In</Link>
       </li>
       <li>
-       <Link to="/cart">Cart</Link>
+        <Link to="/cart">Cart</Link>
       </li>
-      
     </>
   );
+
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+
+  // Pages where the search bar should not be displayed
+  const hideSearchBarPaths = ["/login", "/cart", "/profile", "/signup"];
 
   return (
     <header className="navbar">
@@ -84,18 +88,21 @@ export default function NavBar() {
         <div></div>
       </div>
 
-      <form className="searchBar" onSubmit={handleSearch}>
-        <input
-          type="text"
-          placeholder="Search..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          className="searchInput"
-        />
-      </form>
+      {/* Conditionally render the search bar */}
+      {!hideSearchBarPaths.includes(location.pathname) && (
+        <form className="searchBar" onSubmit={handleSearch}>
+          <input
+            type="text"
+            placeholder="Search..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            className="searchInput"
+          />
+        </form>
+      )}
 
       <nav>
-         <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
+        <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
           {user ? (
             <>
               {commonLinks}

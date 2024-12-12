@@ -1,130 +1,173 @@
 /* NavBar.css */
-@font-face{
+
+/* Custom Fonts */
+@font-face {
   font-family: 'LogoFont';
-  src: url('../styles/fonts/Glitch\ inside.otf');
+  src: url('../styles/fonts/Glitch inside.otf');
 }
+
 @font-face {
   font-family: 'LinkFont';
   src: url('../styles/fonts/Oxanium-Medium.ttf');
 }
-/* General Styling for the Navbar */
+
+/* General Navbar Styling */
 .navbar {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0px 20px;
-    background-color:rgb(0, 0, 0);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    
-    overflow:hidden;
-    flex-wrap: nowrap;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: rgb(0, 0, 0); /* Navbar background */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  min-height: 60px; /* Consistent height */
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+/* Logo Styling */
+.logo {
+  font-size: 2em;
+  font-weight: bold;
+  color: rgb(43, 99, 253); /* Logo text color */
+  text-shadow: 0px 3px 3px rgb(0, 0, 247);
+  font-family: 'LogoFont';
+  white-space: nowrap;
+  margin: 0;
+}
+
+
+/* Navigation Links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  font-family: 'LinkFont';
+  white-space: nowrap;
+}
+
+.nav-links li {
+  font-size: 1.2em;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: whitesmoke; /* Link text color */
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #007bff; /* Link hover color */
+}
+
+/* Responsive Navbar */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 20px;
   }
-  
-  /* Logo Styling */
-  .logo {
-    font-size: 1.9em;
-    font-weight: bold;
-    /*color:orange;
-    text-shadow: 0px 3px 3px orangered;*/
-    color: rgb(43, 99, 253); /*Logo Text color*/
-    text-shadow: 0px 3px 3px rgb(0, 0, 247);
-    margin: 0;
-    white-space: nowrap;
-    font-family: 'LogoFont';
-  }
-  
-  /* Navigation Links */
+
+  /* Navigation Links for Smaller Screens */
   .nav-links {
-    list-style: none;
+    flex-direction: column;
+    display: none;
+    gap: 10px;
+    width: 100%;
+    background-color: rgb(0, 0, 0); /* Background for dropdown */
+    padding: 10px 0;
+    border-radius: 8px; /* Rounded corners for dropdown */
+  }
+
+  .nav-links.active {
     display: flex;
-    gap: 20px;
-    margin: 0;
-    padding: 0;
-    flex-wrap: nowrap;
-    white-space: nowrap;
-    overflow-x: auto;
-    font-family: 'LinkFont';
   }
-  .nav-links.active{
-    display:flex;
-  }
-  
-  .nav-links li {
-    font-size: 1.2em;
-    flex-shrink:0;
-  }
-  
-  .nav-links a {
-    text-decoration: none;
-    color: whitesmoke; /* Black text for links */
-    font-weight: 500;
-    transition: color 0.3s ease;
-    
-  }
-  
-  .nav-links a:hover {
-    color: #007bff; /* Add a hover color for better interactivity */
-  }
-  
-  /* Make Navbar Responsive */
-  @media (max-width: 768px) {
-    .navbar {
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 20px;
-    }
-  
-    .nav-links{
-      flex-direction: column;
-      gap: 10px;
-      display:none;
-    }
-    /* Hamburger Menu */
-    .hamburger {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      cursor: pointer;
-    }
 
-    .hamburger div {
-        width: 30px;
-        height: 4px;
-        background-color: #fff;
-        transition: all 0.3s;
-    }
-
-    /* Show links and search bar when hamburger is clicked */
-    .navbar.open .nav-links{
-        display: flex;
-    }
-
-    .navbar.open .hamburger div:nth-child(1) {
-        transform: rotate(45deg) translateY(8px);
-    }
-
-    .navbar.open .hamburger div:nth-child(2) {
-        opacity: 0;
-    }
-
-    .navbar.open .hamburger div:nth-child(3) {
-        transform: rotate(-45deg) translateY(-8px);
-    }
-  }
-  
-  .searchBar{
+  /* Hamburger Menu */
+  .hamburger {
     display: flex;
-    max-width: 500px;
-    flex: 1;
-    background-color: rgb(0, 0, 0);
-  }
-  .searchBar input{
-    background-color: rgb(0, 0, 0);
-    color:whitesmoke;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
   }
 
-  body{
+  .hamburger div {
+    width: 30px;
+    height: 4px;
     background-color: whitesmoke;
+    transition: all 0.3s;
   }
-  
+
+  /* Animate Hamburger Icon on Click */
+  .navbar.open .hamburger div:nth-child(1) {
+    transform: rotate(45deg) translateY(8px);
+  }
+
+  .navbar.open .hamburger div:nth-child(2) {
+    opacity: 0;
+  }
+
+  .navbar.open .hamburger div:nth-child(3) {
+    transform: rotate(-45deg) translateY(-8px);
+  }
+
+  .navbar.open .nav-links {
+    display: flex;
+  }
+}
+
+/* Search Bar */
+.searchBar {
+  display: flex;
+  align-items: center;
+  max-width: 500px;
+  flex: 1;
+  margin-left: auto;
+  background-color: rgb(0, 0, 0);
+}
+
+.searchBar input {
+  width: 100%;
+  padding: 5px 10px;
+  background-color: rgb(0, 0, 0);
+  color: whitesmoke;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+.searchBar input::placeholder {
+  color: #999; /* Placeholder color */
+}
+
+/* Body Styling */
+body {
+  background-color: whitesmoke;
+  margin: 0;
+}
+
+/* Utility Classes */
+.hidden {
+  display: none;
+}
+
+/* Responsive Navbar */
+@media (max-width: 768px) {
+
+  /* Reorder logo and hamburger for mobile */
+  .navbar {
+    flex-direction: row; /* Override column layout for mobile */
+  }
+
+  .hamburger {
+    order: 0; /* Move hamburger to the left */
+  }
+
+  .logo {
+    order: 1; /* Move logo to the right */
+  }
+}

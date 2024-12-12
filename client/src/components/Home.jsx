@@ -61,6 +61,23 @@ const HomePage = () => {
 
   return (
     <div className="homepage" style={{ fontFamily: 'Arial, sans-serif' }}>
+     <section className="hero">
+    {/* Background Video */}
+    <video
+      autoPlay
+      muted
+      loop
+      className="hero-video"
+    >
+      <source src="/animate.mov" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    {/* Text Overlay */}
+    <div className="hero-text">
+      <h2 className="typing">Your Official Place for 3D Printing</h2>
+    </div>
+  </section> 
   {alertMessage && (
     <div className="alert">
       {alertMessage}
@@ -77,23 +94,7 @@ const HomePage = () => {
   )}
 
   {/* Hero Section */}
-  <section className="hero">
-    {/* Background Video */}
-    <video
-      autoPlay
-      muted
-      loop
-      className="hero-video"
-    >
-      <source src="/animate.mov" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
-
-    {/* Text Overlay */}
-    <div className="hero-text">
-      <h2 className="typing">Your Official Place for 3D Printing</h2>
-    </div>
-  </section>
+  
 </div>
 
 
