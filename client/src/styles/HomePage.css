@@ -138,7 +138,7 @@ h1, h2 {
 }
 
 /* Media Queries for Responsiveness */
-@media (max-width: 768px) {
+@media (max-width: 150px) {
   /* Hero Section Adjustments for Tablets */
   .hero {
     padding: 20px;
