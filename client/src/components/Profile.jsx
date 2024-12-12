@@ -40,11 +40,34 @@ const Profile = () => {
   const fetchPurchases = async () => {
     try {
       const response = await axios.get(`https://printhubback.vercel.app/purchases/${user._id}`);
-      setPurchases(response.data);
+      const purchaseData = response.data;
+  
+      const purchasesWithDetails = await Promise.all(
+        purchaseData.map(async (purchase) => {
+          try {
+            // Fetch item details, ensure itemId is in the correct format
+             // Clean up any whitespace
+             console.log(purchase)
+            const url = `https://printhubback.vercel.app/listings/single/${purchase.itemId}`;
+            const itemResponse = await axios.get(url);
+            return {
+              ...purchase,
+              listingName: itemResponse.data.listingName, // Assuming the API returns `listingName`
+            };
+          } catch (err) {
+            console.error(`Failed to fetch item details for ID ${purchase.itemId}:`, err);
+            return { ...purchase, listingName: 'Unknown Item' };
+          }
+        })
+      );
+  
+      setPurchases(purchasesWithDetails);
     } catch (err) {
       console.error('Failed to fetch purchases:', err);
     }
   };
+  
+  
 
   const fetchProducts = async () => {
     try {
@@ -152,11 +175,12 @@ const Profile = () => {
         <ul>
           {purchases.map((purchase, index) => (
             <li key={index}>
-              {purchase.productName} - {purchase.date}
+              PurchaseID#{purchase._id} - {purchase.date}
             </li>
           ))}
         </ul>
       </div>
+
 
       {/* {user.isSeller && (
         <div className="seller-section">

@@ -38,7 +38,10 @@ router.post('/', async (req, res) => {
   try {
     
     console.log("heyyy")
-    const purchase = new Purchase({'userId': req.body.user, 'listingIds':req.body.items, 'cardDigits':"0000"});
+    const today = new Date();
+    const formattedDate = `${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${today.getDate().toString().padStart(2, '0')}`; //chat made this
+    console.log(formattedDate)
+    const purchase = new Purchase({'userId': req.body.user, 'listingIds':req.body.items, 'cardDigits':"0000", date:formattedDate});
     await purchase.save();
     res.status(201).json(purchase);
   } catch (err) {
