@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 
 const purchaseSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'Buyer', required: true },
-  purchaseId: { type: String, required: true, unique: true },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   listingIds: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Listing', required: true }],
   cardDigits: { type: String, required: true }
 }, { collection: 'Purchase' });

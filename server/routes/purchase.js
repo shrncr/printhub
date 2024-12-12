@@ -10,15 +10,38 @@ router.get('/', async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: 'Error retrieving purchases', error: err });
   }
+}); 
+//filer by listingid
+router.get('/:sellerId', async (req, res) => {
+  try {
+    console.log("hi")
+    const { userId } = req.params;
+    console.log("hi2")
+    if (!userId) {
+      return res.status(400).json({ message: 'nos eler id' });
+    }
+    const listings = await Purchase.find({ userId });
+
+    if (listings.length == 0) {
+      return res.status(404).json({ message: 'no purchases' });
+    }
+
+    res.json(listings);
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
 });
 
 //add new purchase
 router.post('/', async (req, res) => {
   try {
-    const purchase = new Purchase(req.body);
+    
+    console.log("heyyy")
+    const purchase = new Purchase({'userId': req.body.user, 'listingIds':req.body.items, 'cardDigits':"0000"});
     await purchase.save();
     res.status(201).json(purchase);
   } catch (err) {
+    console.log(err)
     res.status(400).json({ message: 'Error adding purchase', error: err });
   }
 });

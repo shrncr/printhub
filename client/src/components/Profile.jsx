@@ -39,7 +39,7 @@ const Profile = () => {
 
   const fetchPurchases = async () => {
     try {
-      const response = await axios.get(`https://printhubback.vercel.app/users/${user._id}/purchases`);
+      const response = await axios.get(`https://printhubback.vercel.app/purchases/${user._id}`);
       setPurchases(response.data);
     } catch (err) {
       console.error('Failed to fetch purchases:', err);

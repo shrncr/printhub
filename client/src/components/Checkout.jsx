@@ -3,8 +3,10 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios"; // For backend requests
 import "../styles/Checkout.css";
 import Cookies from 'js-cookie';
+import { useUser } from "./UserContext";
 
 const Checkout = () => {
+  const { user,logout, login, } = useUser();
   const location = useLocation();
   const navigate = useNavigate();
   const { cartItems = [], total = 0 } = location.state || {};
@@ -12,15 +14,18 @@ const Checkout = () => {
   // Handle Confirm Purchase
   const handleConfirm = async () => {
     try {
-      // Update quantity in the backend for each cart item
+      //Update quantity in the backend for each cart item
       const promises = cartItems.map((item) =>
         axios.put(`https://printhubback.vercel.app/listings/${item.listingId}`, {
           quantity: item.quantity, // Send the quantity to be reduced
         })
       );
-
       await Promise.all(promises);
       Cookies.remove('cart');
+      const response = await axios.post(`https://printhubback.vercel.app/purchases`, {
+        items: cartItems.map((item) => item.listingId),
+        user: user._id
+      });
 
       alert("Purchase confirmed! Inventory updated.");
       // Optionally navigate to a success page or clear cart state
