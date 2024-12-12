@@ -57,7 +57,7 @@ const CartPage = () => {
         <ul className="cartList">
           {cartItems.map((item) => (
             <li key={item.listingId}>
-              <img className="prodImg" src={item.image || 'https://via.placeholder.com/200'} alt={item.listingName} style={{ width: '100px', height: '100px' }} />
+              <img className="prodImg" src={item.image || "/holder.png"} alt={item.listingName} style={{ width: '100px', height: '100px' }} />
               <div className="detailsCart">
               <Link to={`/listings/single/${item.listingId}`} className="name">
                   {item.listingName}

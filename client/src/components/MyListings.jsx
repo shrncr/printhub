@@ -96,7 +96,7 @@ const MyListings = () => {
             {listings.map((listing) => (
               <div className="listing-card" key={listing._id}>
                 <img
-                  src={listing.image || "https://via.placeholder.com/150"}
+                  src={listing.image || "missing.png"}
                   alt={listing.listingName}
                   className="listing-image"
                 />

@@ -100,7 +100,7 @@ const ListingsPage = () => {
               }}
             >
               <img
-                src={listing.image || 'https://via.placeholder.com/200'}
+                src={listing.image || "/holder.png"}
                 alt={listing.listingName}
                 style={{ width: '100%', height: '200px', objectFit: 'cover' }}
               />

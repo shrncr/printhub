@@ -51,7 +51,7 @@ const Checkout = () => {
           {cartItems.map((item) => (
             <li key={item.listingId}>
               <img
-                src={item.image || "https://via.placeholder.com/200"}
+                src={item.image || "/holder.png"}
                 alt={item.listingName}
                 style={{ width: "100px", height: "100px" }}
               />
