@@ -18,6 +18,7 @@ const Profile = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const navigate = useNavigate();
+  const [expandedPurchases, setExpandedPurchases] = useState({});
 
   useEffect(() => {
     if (!user){
@@ -45,18 +46,25 @@ const Profile = () => {
       const purchasesWithDetails = await Promise.all(
         purchaseData.map(async (purchase) => {
           try {
-            // Fetch item details, ensure itemId is in the correct format
-             // Clean up any whitespace
-             console.log(purchase)
-            const url = `https://printhubback.vercel.app/listings/single/${purchase.itemId}`;
-            const itemResponse = await axios.get(url);
+            // Fetch item details for each listing in listingIds
+            const itemPromises = purchase.listingIds.map(async (listingId) => {
+              const url = `https://printhubback.vercel.app/listings/single/${listingId}`;
+              const itemResponse = await axios.get(url);
+              return {
+                listingName: itemResponse.data.listingName, // Assuming the API returns `listingName`
+                listingPrice: itemResponse.data.price, // Assuming the API returns `price`
+              };
+            });
+  
+            const items = await Promise.all(itemPromises);
+  
             return {
               ...purchase,
-              listingName: itemResponse.data.listingName, // Assuming the API returns `listingName`
+              items, // Add the array of items with details
             };
           } catch (err) {
-            console.error(`Failed to fetch item details for ID ${purchase.itemId}:`, err);
-            return { ...purchase, listingName: 'Unknown Item' };
+            console.error(`Failed to fetch item details for purchase ${purchase._id}:`, err);
+            return { ...purchase, items: [] }; // Add an empty items array if there's an error
           }
         })
       );
@@ -118,6 +126,12 @@ const Profile = () => {
       console.error('Failed to add product:', err);
     }
   };
+  const togglePurchaseItems = (purchaseId) => {
+    setExpandedPurchases(prevState => ({
+      ...prevState,
+      [purchaseId]: !prevState[purchaseId],
+    }));
+  };
 
   if (!user) {
     return <div>Loading...</div>;
@@ -173,12 +187,27 @@ const Profile = () => {
       <div className="purchases-section">
         <h2>Your Purchases</h2>
         <ul>
-          {purchases.map((purchase, index) => (
-            <li key={index}>
-              PurchaseID#{purchase._id} - {purchase.date}
+    {purchases.map((purchase, index) => (
+      <li key={index}>
+        <p onClick={() => togglePurchaseItems(purchase._id)} style={{ cursor: 'pointer', color: 'blue' }}>
+                <strong>Purchase ID:</strong> {purchase._id} - <strong>Date:</strong> {purchase.date}
+              </p>
+              {expandedPurchases[purchase._id] && (
+                <div>
+                  <h4>Items:</h4>
+                  <ul>
+                    {purchase.items.map((item, idx) => (
+                      <li key={idx}>
+                        <p><strong>Item Name:</strong> {item.listingName}</p>
+                        <p><strong>Price:</strong> ${item.listingPrice}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </li>
-          ))}
-        </ul>
+    ))}
+  </ul>
       </div>
 
 

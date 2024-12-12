@@ -14,7 +14,11 @@ const Checkout = () => {
   // Handle Confirm Purchase
   const handleConfirm = async () => {
     try {
-      //Update quantity in the backend for each cart item
+      if(!user){
+        alert("Please Sign In To Make A Purchase.")
+      }
+      else{
+        //Update quantity in the backend for each cart item
       const promises = cartItems.map((item) =>
         axios.put(`https://printhubback.vercel.app/listings/${item.listingId}`, {
           quantity: item.quantity, // Send the quantity to be reduced
@@ -28,8 +32,9 @@ const Checkout = () => {
       });
 
       alert("Purchase confirmed! Inventory updated.");
-      // Optionally navigate to a success page or clear cart state
-      navigate("/cart"); // Replace "/thank-you" with your desired route
+      navigate("/cart"); 
+      }
+      
     } catch (err) {
       console.error("Error confirming purchase:", err);
       alert("Failed to confirm purchase. Please try again.");
